@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Happy Birthday Sayang</title>
+  <style>
+    :root{--bg:#fff6f9;--accent:#ff6b81;--text:#333;}
+    body{margin:0;font-family:Arial, sans-serif;background:linear-gradient(180deg,var(--bg),#fff);color:var(--text);}
+    header{padding:40px 20px;text-align:center;background:linear-gradient(90deg,#fff,#ffeef2);box-shadow:0 6px 18px rgba(0,0,0,0.06);}
+    h1{margin:0;font-size:40px;color:var(--accent);letter-spacing:1px;}
+    p.lead{margin:10px 0 0;color:#666;}
+    .container{max-width:1100px;margin:30px auto;padding:0 16px;}
+    .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;}
+    .card{position:relative;overflow:hidden;border-radius:12px;background:#fff;border:1px solid rgba(0,0,0,0.05);}
+    .card img{width:100%;height:320px;object-fit:cover;display:block;transition:transform .45s ease;}
+    .card:hover img{transform:scale(1.04);}
+    .caption{position:absolute;left:0;right:0;bottom:0;padding:14px 16px;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.6));color:#fff;font-weight:600;}
+    .caption small{display:block;font-weight:400;opacity:0.95;margin-top:6px;font-size:13px;}
+    footer{text-align:center;padding:24px;color:#666;}
+    .lightbox{position:fixed;inset:0;background:rgba(0,0,0,0.85);display:none;align-items:center;justify-content:center;z-index:999;}
+    .lightbox.open{display:flex;}
+    .lightbox img{max-width:92%;max-height:80%;border-radius:8px;box-shadow:0 20px 40px rgba(0,0,0,0.6);}
+    .close-btn{position:fixed;right:18px;top:18px;background:var(--accent);color:#fff;border:none;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:700;box-shadow:0 6px 18px rgba(0,0,0,0.2);}    
+    @media (max-width:600px){ .card img{height:220px;} h1{font-size:28px;} }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Happy Birthday Sayang</h1>
+    <p class="lead">Hari ini dan selamanya — aku merayakan cinta kita.</p>
+  </header>
+  <main class="container">
+    <section class="gallery">
+
+      <figure class="card" data-index="0">
+        <img src="photo1.jpeg" alt="photo1" onclick="openLightbox(0)" />
+        <figcaption class="caption">Happy Birthday Sayang — setiap detik bersamamu adalah hadiah.<small>— Dari aku untuk kamu</small></figcaption>
+      </figure>
+
+      <figure class="card" data-index="1">
+        <img src="photo2.jpeg" alt="photo2" onclick="openLightbox(1)" />
+        <figcaption class="caption">Kamu adalah alasan senyumku. Selamat ulang tahun, cinta.<small>— Dari aku untuk kamu</small></figcaption>
+      </figure>
+
+      <figure class="card" data-index="2">
+        <img src="photo3.jpeg" alt="photo3" onclick="openLightbox(2)" />
+        <figcaption class="caption">Bersamamu, hari biasa jadi istimewa. Happy birthday, sayangku.<small>— Dari aku untuk kamu</small></figcaption>
+      </figure>
+
+      <figure class="card" data-index="3">
+        <img src="photo4.jpeg" alt="photo4" onclick="openLightbox(3)" />
+        <figcaption class="caption">Saat kau tertawa, dunia terasa sempurna. Selamat ulang tahun.<small>— Dari aku untuk kamu</small></figcaption>
+      </figure>
+
+      <figure class="card" data-index="4">
+        <img src="photo5.jpeg" alt="photo5" onclick="openLightbox(4)" />
+        <figcaption class="caption">Untukmu yang selalu ada — semoga semua mimpimu tercapai.<small>— Dari aku untuk kamu</small></figcaption>
+      </figure>
+
+      <figure class="card" data-index="5">
+        <img src="photo6.jpeg" alt="photo6" onclick="openLightbox(5)" />
+        <figcaption class="caption">Cinta kita adalah pelabuhan yang menenangkan. Selamat ulang tahun.<small>— Dari aku untuk kamu</small></figcaption>
+      </figure>
+
+      <figure class="card" data-index="6">
+        <img src="photo7.jpeg" alt="photo7" onclick="openLightbox(6)" />
+        <figcaption class="caption">Aku mencintaimu lebih dari kata-kata. Happy Birthday, sayang.<small>— Dari aku untuk kamu</small></figcaption>
+      </figure>
+
+      <figure class="card" data-index="7">
+        <img src="photo8.jpeg" alt="photo8" onclick="openLightbox(7)" />
+        <figcaption class="caption">Setiap kenangan kita berkilau seperti bintang. Selamat ulang tahun.<small>— Dari aku untuk kamu</small></figcaption>
+      </figure>
+
+      <figure class="card" data-index="8">
+        <img src="photo9.jpeg" alt="photo9" onclick="openLightbox(8)" />
+        <figcaption class="caption">Hari ini milikmu — aku akan selalu ada di sampingmu.<small>— Dari aku untuk kamu</small></figcaption>
+      </figure>
+
+      <figure class="card" data-index="9">
+        <img src="photo10.jpeg" alt="photo10" onclick="openLightbox(9)" />
+        <figcaption class="caption">Semoga kebahagiaanmu bertambah, sepertiku yang selalu mencintaimu.<small>— Dari aku untuk kamu</small></figcaption>
+      </figure>
+
+    </section>
+  </main>
+
+  <div id="lb" class="lightbox" onclick="closeLightbox(event)">
+    <button class="close-btn" onclick="closeLightbox(event)">Close</button>
+    <img id="lbimg" src="" alt="enlarged" />
+  </div>
+
+  <footer>© Selamat ulang tahun, sayang. Semoga hari-harimu seindah senyummu.</footer>
+
+  <script>
+    const imgs = Array.from(document.querySelectorAll('.card img')).map(i => i.src);
+    function openLightbox(index){
+      const lb = document.getElementById('lb');
+      const lbimg = document.getElementById('lbimg');
+      lbimg.src = imgs[index];
+      lb.classList.add('open');
+    }
+    function closeLightbox(e){
+      if(e.target && (e.target.id==='lb' || e.target.classList.contains('close-btn'))){
+        document.getElementById('lb').classList.remove('open');
+      }
+      e.stopPropagation();
+    }
+    document.addEventListener('keydown', (ev)=>{ if(ev.key==='Escape'){ document.getElementById('lb').classList.remove('open'); } });
+  </script>
+</body>
+</html>
